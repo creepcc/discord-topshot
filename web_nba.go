@@ -51,7 +51,7 @@ func GetAddress(TSUser string, which string) (string, error) {
 	}
 }
 
-// GetPlayIDFromURL needs a comment writing
+// GetPlayIDFromURL needs fixing
 func GetPlayIDFromURL(url string) (string, error) {
 	resp, _ := http.Get(url)
 	body, err := ioutil.ReadAll(resp.Body)
@@ -71,27 +71,3 @@ func GetPlayIDFromURL(url string) (string, error) {
 
 	return sb[loc[1]+3 : loc[1]+13], nil
 }
-
-/*
-// GetFlowAddressOld is shit
-func GetFlowAddressOld(TSUser string) (string, error) {
-	resp, _ := http.Get(fmt.Sprintf("https://www.nbatopshot.com/user/@%s", TSUser))
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("Error reading HTML body")
-	}
-
-	r, _ := regexp.Compile("flowAddress")
-
-	sb := string(body)
-
-	loc := r.FindStringIndex(sb)
-
-	if loc == nil {
-		return "", fmt.Errorf("User %s not found", TSUser)
-	}
-
-	return sb[loc[1]+3 : loc[1]+19], nil
-}
-*/
